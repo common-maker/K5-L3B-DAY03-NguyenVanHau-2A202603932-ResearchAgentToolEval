@@ -14,7 +14,7 @@
 |   1 | Nguyễn Văn Hậu | 2A202603932 | nguyenhau230303@gmail.com | common-maker | Prompt Engineering, Evaluation, Report |
 |   2 | Cao Thanh Tùng | 2A202603982 | 26ai.tungct@vinuni.edu.vn | cutcutchch123 | New Tools, Unit Tests, Evaluation |
 |   3 | Luong Duc Anh | 2A202603931 |  |  | UI and Demo |
-|   2 | Võ Thị Phương Nhung | 2A202603918 | nhungvo631@gmail.com | nhungvo631-stack | Unit Tests, Evaluation |
+|   4 | Võ Thị Phương Nhung | 2A202603918 | nhungvo631@gmail.com | nhungvo631-stack | Unit Tests, Evaluation |
 ## Cá nhân
 
 Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/` theo dạng:
