@@ -3,5 +3,116 @@
   "dataset_role": "group",
   "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+    {
+      "id": "G01_policy_source_citation",
+      "phase": "B",
+      "suite": "group",
+      "query": "Theo policy công ty, khi dùng nguồn từ mạng xã hội thì cần kiểm chứng và trích dẫn thế nào?",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "policy", "args": {"policy_area": "source_citation"}}]},
+      "metadata": {"what_it_tests": "Câu hỏi về quy định nội bộ và citation phải route tới tool policy thay vì tìm web."}
+    },
+    {
+      "id": "G02_paper_search_arguments",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tìm 3 paper arXiv mới nhất về đánh giá AI agents, ưu tiên bài cập nhật gần đây.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "papers", "args": {"max_results": 3, "sort_by": "lastUpdatedDate"}}]},
+      "metadata": {"what_it_tests": "Route yêu cầu paper tới papers và giữ đúng số lượng cùng tiêu chí sắp xếp lastUpdatedDate."}
+    },
+    {
+      "id": "G03_format_digest_template",
+      "phase": "B",
+      "suite": "group",
+      "query": "Đã có các mục tin AI bên dưới, hãy trình bày thành bản tin hằng ngày bằng template daily_ai_vn.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "format", "args": {"template": "daily_ai_vn"}}]},
+      "metadata": {"what_it_tests": "Yêu cầu chỉ định khuôn trình bày phải route tới format và truyền đúng template daily_ai_vn."}
+    },
+    {
+      "id": "G04_send_requires_confirmation",
+      "phase": "B",
+      "suite": "group",
+      "query": "Gửi bản tin này lên Telegram giúp mình, nhưng mình chưa xác nhận gửi.",
+      "failure_type": "wrong_boundary",
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "yes_no"}}]},
+      "metadata": {"what_it_tests": "Hành động publish chưa có xác nhận phải hỏi yes_no, không gọi send trực tiếp."}
+    },
+    {
+      "id": "G05_no_tool_explanation",
+      "phase": "B",
+      "suite": "group",
+      "query": "Giải thích ngắn gọn sự khác nhau giữa tìm tweet theo người dùng và tìm tweet theo chủ đề.",
+      "failure_type": "unnecessary_tool",
+      "expect": {"no_tool": true, "behavior": "answer_without_tool"},
+      "metadata": {"what_it_tests": "Câu hỏi giải thích khái niệm về khả năng của agent không cần truy vấn dữ liệu live."}
+    },
+    {
+      "id": "M06_clarify_then_fetch",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tóm tắt bài nghiên cứu này giúp mình"},
+        {"role": "user", "content": "Đây là link: https://openai.com/research/"},
+        {"role": "user", "content": "Chỉ đọc đúng link đó, không tìm thêm nguồn"}
+      ],
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "fetch", "args": {"url": "https://openai.com/research/"}}]},
+      "metadata": {"what_it_tests": "Sau khi được bổ sung URL qua nhiều lượt, phải dùng fetch đúng link và không chuyển sang lookup."}
+    },
+    {
+      "id": "M07_policy_context_carryover",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Mình muốn kiểm tra một quy định trong company policy."},
+        {"role": "user", "content": "Cụ thể là quy định về dữ liệu riêng tư và API key."},
+        {"role": "user", "content": "Chỉ tra phần data privacy thôi."}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "policy", "args": {"policy_area": "data_privacy"}}]},
+      "metadata": {"what_it_tests": "Giữ ngữ cảnh policy qua các lượt và chọn đúng policy_area=data_privacy."}
+    },
+    {
+      "id": "M08_social_search_carryover",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tìm tweet về OpenAI."},
+        {"role": "user", "content": "Chỉ lấy các tweet phổ biến nhất."},
+        {"role": "user", "content": "Giữ chủ đề OpenAI và dùng chế độ top."}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "OpenAI", "search_type": "Top"}}]},
+      "metadata": {"what_it_tests": "Mang query từ lượt trước và cập nhật search_type=Top từ yêu cầu bổ sung."}
+    },
+    {
+      "id": "M09_paper_text_carryover",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Mình muốn đọc paper Attention Is All You Need trên arXiv."},
+        {"role": "user", "content": "ID của nó là 1706.03762."},
+        {"role": "user", "content": "Lấy text 3 trang đầu thôi."}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "paper_text", "args": {"arxiv_url": "1706.03762", "max_pages": 3}}]},
+      "metadata": {"what_it_tests": "Tích lũy arXiv ID và giới hạn trang qua multi-turn rồi route tới paper_text."}
+    },
+    {
+      "id": "M10_cancel_live_lookup",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tìm tin AI hôm nay giúp mình."},
+        {"role": "user", "content": "Khoan, đừng tìm kiếm hay gọi tool nữa."},
+        {"role": "user", "content": "Chỉ xác nhận bằng lời là bạn đã hiểu yêu cầu hủy."}
+      ],
+      "failure_type": "wrong_boundary",
+      "expect": {"no_tool": true, "behavior": "answer_without_tool"},
+      "metadata": {"what_it_tests": "Lượt cuối hủy yêu cầu live search phải ngăn tool call dù các lượt trước yêu cầu lookup."}
+    }
+  ]
 }
