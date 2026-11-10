@@ -28,3 +28,5 @@ streamlit run app.py --server.address 0.0.0.0 --server.port 8501
 For this computer only, use `--server.address 127.0.0.1`; change `--server.port` to any available port you prefer.
 
 Set the selected provider key in `.env` first. The UI uses the same `artifacts/system_prompt.md`, `artifacts/tools.yaml`, provider adapters, tool registry, and transcript format as `chat.py`. Conversations are saved under `transcripts/`.
+
+Use **New chat** in the sidebar to start a separate conversation. Click a saved chat listed below it to reopen its messages and tool results; each conversation is backed by its transcript JSON file.

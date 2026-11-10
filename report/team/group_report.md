@@ -102,19 +102,20 @@ Lấy từ `results[*].result.failures` trong run JSON.
 ### B3. Team Eval Cases
 
 Liệt kê đúng 10 case trong `starter_v0/data/eval_group.json` (5 single turn + 5 multi turn).
+Run bằng chứng: `starter_v0/runs/v3_B_group_openai_20261110T194821591949.json` — 10/10 pass, không có provider error.
 
 | Case ID | What It Tests | Expected Tool/Behavior | Result |
 |---|---|---|---|
-| G01 | Hỏi policy về citation nguồn social | `policy(policy_area="source_citation")` | Đã thêm vào eval; chưa chạy group eval |
-| G02 | Tìm 3 paper mới cập nhật | `papers(max_results=3, sort_by="lastUpdatedDate")` | Đã thêm vào eval; chưa chạy group eval |
-| G03 | Chọn template digest | `format(template="daily_ai_vn")` | Đã thêm vào eval; chưa chạy group eval |
-| G04 | Chưa xác nhận gửi Telegram | `clarify(response_type="yes_no")` | Đã thêm vào eval; chưa chạy group eval |
-| G05 | Giải thích khái niệm, không cần tra cứu | `no_tool` | Đã thêm vào eval; chưa chạy group eval |
-| M06 | Hỏi URL còn thiếu rồi fetch URL được bổ sung | `fetch(url="https://openai.com/research/")` | Đã thêm vào eval; chưa chạy group eval |
-| M07 | Giữ ngữ cảnh policy qua nhiều lượt | `policy(policy_area="data_privacy")` | Đã thêm vào eval; chưa chạy group eval |
-| M08 | Giữ query social search và đổi sang top | `social_search(query="OpenAI", search_type="Top")` | Đã thêm vào eval; chưa chạy group eval |
-| M09 | Giữ arXiv ID và giới hạn trang | `paper_text(arxiv_url="1706.03762", max_pages=3)` | Đã thêm vào eval; chưa chạy group eval |
-| M10 | Hủy yêu cầu live lookup | `no_tool` | Đã thêm vào eval; chưa chạy group eval |
+| G01 | Hỏi policy về citation nguồn social | `policy(policy_area="source_citation")` | Pass |
+| G02 | Tìm 3 paper mới cập nhật | `papers(max_results=3, sort_by="lastUpdatedDate")` | Pass |
+| G03 | Chọn template digest | `format(template="daily_ai_vn")` | Pass |
+| G04 | Chưa xác nhận gửi Telegram | `clarify(response_type="yes_no")` | Pass |
+| G05 | Giải thích khái niệm, không cần tra cứu | `no_tool` | Pass |
+| M06 | Hỏi URL còn thiếu rồi fetch URL được bổ sung | `fetch(url="https://openai.com/research/")` | Pass |
+| M07 | Giữ ngữ cảnh policy qua nhiều lượt | `policy(policy_area="data_privacy")` | Pass |
+| M08 | Giữ query social search và đổi sang top | `social_search(query="OpenAI", search_type="Top")` | Pass |
+| M09 | Giữ arXiv ID và giới hạn trang | `paper_text(arxiv_url="1706.03762", max_pages=3)` | Pass |
+| M10 | Hủy yêu cầu live lookup | `no_tool` | Pass |
 
 ### B4. Live Chat Evidence
 
@@ -132,7 +133,7 @@ Lấy từ `starter_v0/transcripts/*.transcript.json`.
 |---|---|---|---|
 | Tool mới (`tools/<tên>/`) | `tools/calculator/`, `tools/export_report/`, `tools/summarize/` | Tính toán biểu thức số học, xuất báo cáo Markdown ra file, tóm tắt nội dung văn bản dài | Cần xử lý lỗi chia cho 0, lọc ký tự đặc biệt nguy hiểm khi xuất file |
 | Unit test tool mới (≥ 3 test/tool) | `starter_v0/tests/test_tools_todo.py` | Kiểm thử các nhánh happy path, bad input và lỗi mạng/tham số | Đảm bảo tool trả về dict lỗi `{error: ...}` thay vì raise exception |
-| UI (lệnh chạy + link dùng thử) | `starter_v0/app.py`; chạy bằng `streamlit run app.py` từ `starter_v0/` | Giao diện chat hỗ trợ nhập request và xem tool calls/results | Telegram chưa cấu hình và chưa được demo; không có tin nhắn nào được gửi |
+| UI (lệnh chạy + link dùng thử) | `starter_v0/app.py`; chạy bằng `streamlit run app.py` từ `starter_v0/` | Giao diện chat hỗ trợ tạo chat mới, mở lại chat đã lưu từ danh sách bên, xem tool calls/results | Telegram chưa cấu hình và chưa được demo; không có tin nhắn nào được gửi |
 
 Tool unit tests: số test đã viết, và một ví dụ lỗi mà unit test bắt được nhưng eval không bắt được.
 

@@ -13,6 +13,7 @@
 ## 3. Đóng góp cụ thể
 
 - Tạo giao diện chat trong `starter_v0/app.py`, dùng lại provider, system prompt và tool loop của agent.
+- Thêm khả năng mở chat mới và mở lại các cuộc hội thoại đã lưu từ thanh bên; nội dung được khôi phục từ transcript JSON.
 - Thêm Streamlit vào `starter_v0/requirements.txt` và hướng dẫn chạy/chọn host, port trong `starter_v0/README.md`.
 - Chạy preflight OpenAI và kiểm tra health endpoint của giao diện.
 - Chạy chat live gồm tra cứu web, hỏi lại khi thiếu URL, rồi fetch URL được bổ sung; thêm bằng chứng vào mục B4 của báo cáo nhóm.
