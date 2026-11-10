@@ -1,20 +1,20 @@
 {
-  "run_id": "v3_B_group_openai_20261110T194821591949",
+  "run_id": "v3_B_group_openai_20261110T211756173829",
   "version": "v3",
-  "artifact_version": "v3+p710b497b018e+t48cc9d6f0288",
-  "prompt_hash": "710b497b018e9374b910c11063765ddbc88a227ae3d290d84bb2ec645feaa32b",
-  "tools_hash": "48cc9d6f028851ac7320af1180eeebcd772c6342f804dc1bd2c0fb6f21a9c43d",
+  "artifact_version": "v3+p914d80f78b74+t24f89fcf3ec1",
+  "prompt_hash": "914d80f78b7401b8d20438d8637f6d41b3317237ddace34b875c858119fc9f93",
+  "tools_hash": "24f89fcf3ec1527baaada7c3e35f382ad03665e81518adc5374a8c50a7cd910f",
   "phase": "B",
   "suite": "group",
   "provider": "openai",
   "model": "gpt-4o-mini",
-  "system_prompt": "D:\\K5-L3B-DAY03-111-ResearchAgentToolEval\\starter_v0\\artifacts\\system_prompt.md",
-  "tools": "D:\\K5-L3B-DAY03-111-ResearchAgentToolEval\\starter_v0\\artifacts\\tools.yaml",
-  "eval_cases": "data\\eval_group.json",
+  "system_prompt": "C:\\Users\\Thinkpad T14 G4\\K5-L3B-DAY03-NguyenVanHau-2A202603932-PromptEngineeringToolCalling\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\Thinkpad T14 G4\\K5-L3B-DAY03-NguyenVanHau-2A202603932-PromptEngineeringToolCalling\\starter_v0\\artifacts\\tools.yaml",
+  "eval_cases": "starter_v0\\data\\eval_group.json",
   "dataset_id": "day03_v2_research_group",
   "dataset_role": "group",
   "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
-  "generated_at": "2026-11-10T19:48:21",
+  "generated_at": "2026-11-10T21:17:56",
   "summary": {
     "total_cases": 10,
     "measured_cases": 10,
@@ -230,21 +230,21 @@
       ]
     },
     {
-      "id": "G03_format_digest_template",
+      "id": "G03_calculator_expression",
       "phase": "B",
       "suite": "group",
       "case_suite": "group",
       "is_multiturn": false,
       "metadata": {
-        "what_it_tests": "Yêu cầu chỉ định khuôn trình bày phải route tới format và truyền đúng template daily_ai_vn."
+        "what_it_tests": "Yêu cầu tính toán biểu thức số học cụ thể phải route tới tool mới calculator với đúng expression."
       },
-      "input": "Đã có các mục tin AI bên dưới, hãy trình bày thành bản tin hằng ngày bằng template daily_ai_vn.",
+      "input": "Dùng tool calculator để tính giá trị biểu thức số học của chi phí nghiên cứu: (450 + 550) * 3",
       "expect": {
         "tool_calls": [
           {
-            "name": "format",
+            "name": "calculator",
             "args": {
-              "template": "daily_ai_vn"
+              "expression": "(450 + 550) * 3"
             }
           }
         ]
@@ -255,95 +255,29 @@
         "args_correct": true,
         "actual_tool_calls": [
           {
-            "name": "format",
+            "name": "calculator",
             "args": {
-              "items": [
-                {
-                  "title": "AI trong y tế: Cách mạng hóa chẩn đoán và điều trị",
-                  "url": "https://example.com/article1",
-                  "source": "TechCrunch",
-                  "summary": "Bài viết khám phá cách AI đang thay đổi cách chúng ta chẩn đoán và điều trị bệnh, từ phân tích hình ảnh y tế đến phát hiện sớm các bệnh lý."
-                },
-                {
-                  "title": "Tương lai của AI: Xu hướng và thách thức",
-                  "url": "https://example.com/article2",
-                  "source": "Wired",
-                  "summary": "Một cái nhìn sâu sắc về các xu hướng hiện tại trong lĩnh vực AI và những thách thức mà ngành công nghiệp này đang phải đối mặt."
-                },
-                {
-                  "title": "AI và bảo mật dữ liệu: Cần làm gì để bảo vệ thông tin cá nhân?",
-                  "url": "https://example.com/article3",
-                  "source": "The Verge",
-                  "summary": "Bài viết này thảo luận về mối quan hệ giữa AI và bảo mật dữ liệu, cùng với các biện pháp cần thiết để bảo vệ thông tin cá nhân."
-                },
-                {
-                  "title": "AI trong giáo dục: Cải thiện trải nghiệm học tập",
-                  "url": "https://example.com/article4",
-                  "source": "EdTech Magazine",
-                  "summary": "Khám phá cách AI đang được sử dụng để cải thiện trải nghiệm học tập và cá nhân hóa giáo dục cho học sinh."
-                },
-                {
-                  "title": "AI và nghệ thuật: Sự giao thoa giữa công nghệ và sáng tạo",
-                  "url": "https://example.com/article5",
-                  "source": "ArtNet",
-                  "summary": "Bài viết này xem xét cách AI đang thay đổi cách chúng ta tạo ra và thưởng thức nghệ thuật."
-                }
-              ],
-              "template": "daily_ai_vn",
-              "headline": "Bản tin AI hàng ngày"
+              "expression": "(450 + 550) * 3"
             }
           }
         ],
         "actual_text": null,
-        "case_failure_type": "wrong_arg_value",
+        "case_failure_type": "wrong_tool",
         "observed_mismatch": null,
         "failure_type": null,
         "failures": []
       },
       "tool_results": [
         {
-          "tool": "format",
+          "tool": "calculator",
           "args": {
-            "items": [
-              {
-                "title": "AI trong y tế: Cách mạng hóa chẩn đoán và điều trị",
-                "url": "https://example.com/article1",
-                "source": "TechCrunch",
-                "summary": "Bài viết khám phá cách AI đang thay đổi cách chúng ta chẩn đoán và điều trị bệnh, từ phân tích hình ảnh y tế đến phát hiện sớm các bệnh lý."
-              },
-              {
-                "title": "Tương lai của AI: Xu hướng và thách thức",
-                "url": "https://example.com/article2",
-                "source": "Wired",
-                "summary": "Một cái nhìn sâu sắc về các xu hướng hiện tại trong lĩnh vực AI và những thách thức mà ngành công nghiệp này đang phải đối mặt."
-              },
-              {
-                "title": "AI và bảo mật dữ liệu: Cần làm gì để bảo vệ thông tin cá nhân?",
-                "url": "https://example.com/article3",
-                "source": "The Verge",
-                "summary": "Bài viết này thảo luận về mối quan hệ giữa AI và bảo mật dữ liệu, cùng với các biện pháp cần thiết để bảo vệ thông tin cá nhân."
-              },
-              {
-                "title": "AI trong giáo dục: Cải thiện trải nghiệm học tập",
-                "url": "https://example.com/article4",
-                "source": "EdTech Magazine",
-                "summary": "Khám phá cách AI đang được sử dụng để cải thiện trải nghiệm học tập và cá nhân hóa giáo dục cho học sinh."
-              },
-              {
-                "title": "AI và nghệ thuật: Sự giao thoa giữa công nghệ và sáng tạo",
-                "url": "https://example.com/article5",
-                "source": "ArtNet",
-                "summary": "Bài viết này xem xét cách AI đang thay đổi cách chúng ta tạo ra và thưởng thức nghệ thuật."
-              }
-            ],
-            "template": "daily_ai_vn",
-            "headline": "Bản tin AI hàng ngày"
+            "expression": "(450 + 550) * 3"
           },
           "result": {
-            "tool": "render_digest",
-            "template": "daily_ai_vn",
-            "markdown": "**Bản tin AI hàng ngày**\n\n**Tin chính**\n- Bài viết khám phá cách AI đang thay đổi cách chúng ta chẩn đoán và điều trị bệnh, từ phân tích hình ảnh y tế đến phát hiện sớm các bệnh lý. - [TechCrunch](https://example.com/article1)\n- Một cái nhìn sâu sắc về các xu hướng hiện tại trong lĩnh vực AI và những thách thức mà ngành công nghiệp này đang phải đối mặt. - [Wired](https://example.com/article2)\n- Bài viết này thảo luận về mối quan hệ giữa AI và bảo mật dữ liệu, cùng với các biện pháp cần thiết để bảo vệ thông tin cá nhân. - [The Verge](https://example.com/article3)\n- Khám phá cách AI đang được sử dụng để cải thiện trải nghiệm học tập và cá nhân hóa giáo dục cho học sinh. - [EdTech Magazine](https://example.com/article4)\n- Bài viết này xem xét cách AI đang thay đổi cách chúng ta tạo ra và thưởng thức nghệ thuật. - [ArtNet](https://example.com/article5)\n",
-            "item_count": 5
+            "tool": "calculator",
+            "expression": "(450 + 550) * 3",
+            "result": 3000,
+            "formatted": "3000"
           }
         }
       ]
@@ -423,7 +357,7 @@
         "routing_correct": true,
         "args_correct": true,
         "actual_tool_calls": [],
-        "actual_text": "Tìm tweet theo người dùng là quá trình lấy các bài đăng từ một tài khoản cụ thể, tức là bạn chỉ xem nội dung mà người dùng đó đã đăng. Ví dụ, nếu bạn tìm tweet của Elon Musk, bạn sẽ chỉ thấy những gì ông ấy đã chia sẻ.\n\nNgược lại, tìm tweet theo chủ đề là tìm kiếm các bài đăng liên quan đến một từ khóa hoặc chủ đề cụ thể, không giới hạn ở một tài khoản nào. Điều này cho phép bạn xem nhiều quan điểm và ý kiến khác nhau từ nhiều người dùng khác nhau về một vấn đề hoặc sự kiện cụ thể.",
+        "actual_text": "Tìm tweet theo người dùng là quá trình lấy các bài đăng từ một tài khoản cụ thể, tức là bạn chỉ xem nội dung mà người dùng đó đã đăng. Ví dụ, nếu bạn tìm tweet của Elon Musk, bạn sẽ chỉ thấy những gì ông ấy đã viết.\n\nNgược lại, tìm tweet theo chủ đề là tìm kiếm các bài đăng liên quan đến một từ khóa hoặc chủ đề cụ thể, không giới hạn ở một tài khoản nào. Điều này cho phép bạn xem nhiều quan điểm và ý kiến khác nhau từ nhiều người dùng khác nhau về một vấn đề hoặc sự kiện cụ thể.",
         "case_failure_type": "unnecessary_tool",
         "observed_mismatch": null,
         "failure_type": null,
@@ -574,35 +508,35 @@
       ]
     },
     {
-      "id": "M08_social_search_carryover",
+      "id": "M08_summarize_focus_carryover",
       "phase": "B",
       "suite": "group",
       "case_suite": "group",
       "is_multiturn": true,
       "metadata": {
-        "what_it_tests": "Mang query từ lượt trước và cập nhật search_type=Top từ yêu cầu bổ sung."
+        "what_it_tests": "Tích lũy văn bản, số lượng ý chính (max_bullets=2) và chủ đề (focus=safety) qua nhiều lượt để gọi tool mới summarize."
       },
       "input": [
         {
           "role": "user",
-          "content": "Tìm tweet về OpenAI."
+          "content": "Mình có đoạn văn bản nghiên cứu này cần tóm tắt bằng tool summarize: 'AI agents automate web lookup and paper reading. Safety guardrails require user confirmation before sending messages. Unit tests verify tool error handling.'"
         },
         {
           "role": "user",
-          "content": "Chỉ lấy các tweet phổ biến nhất."
+          "content": "Chỉ rút gọn tối đa 2 ý chính thôi nhé."
         },
         {
           "role": "user",
-          "content": "Giữ chủ đề OpenAI và dùng chế độ top."
+          "content": "Tập trung vào từ khóa safety."
         }
       ],
       "expect": {
         "tool_calls": [
           {
-            "name": "social_search",
+            "name": "summarize",
             "args": {
-              "query": "OpenAI",
-              "search_type": "Top"
+              "max_bullets": 2,
+              "focus": "safety"
             }
           }
         ]
@@ -613,10 +547,11 @@
         "args_correct": true,
         "actual_tool_calls": [
           {
-            "name": "social_search",
+            "name": "summarize",
             "args": {
-              "query": "OpenAI",
-              "search_type": "Top"
+              "text": "AI agents automate web lookup and paper reading. Safety guardrails require user confirmation before sending messages. Unit tests verify tool error handling.",
+              "max_bullets": 2,
+              "focus": "safety"
             }
           }
         ],
@@ -628,77 +563,21 @@
       },
       "tool_results": [
         {
-          "tool": "social_search",
+          "tool": "summarize",
           "args": {
-            "query": "OpenAI",
-            "search_type": "Top"
+            "text": "AI agents automate web lookup and paper reading. Safety guardrails require user confirmation before sending messages. Unit tests verify tool error handling.",
+            "max_bullets": 2,
+            "focus": "safety"
           },
           "result": {
-            "tool": "search_tweets",
-            "query": "OpenAI",
-            "search_type": "Top",
-            "items": [
-              {
-                "title": "I still don't understand why everyone is not using this yet. Thanks to it, a year ago I increased my income to 15,000 do",
-                "summary": "I still don't understand why everyone is not using this yet. Thanks to it, a year ago I increased my income to 15,000 dollars a month\n\nAndrey Karpathy, co-founder of OpenAI, published a simple idea that got 25 million views: stop using AI to write code, use it to build a second brain\n\nYou point Claude Code to a folder, drop any source in there (an article, transcript, PDF) and Claude reads it, links it, and saves it into a living wiki of everything you know. It compounds like interest: the more you feed it, the smarter it gets\n\nHere is the gist:\n\nInstall Obsidian, create a vault, open it in Claude Code\n\nPaste the file with Karpathy's wiki idea and tell Claude to build it\n\nClaude creates three folders: raw for sources, wiki for its pages, CLAUDE\nwhich runs everything\n\nDrop any source into raw and say ingest this\n\nAsk questions across everything, forever\n\n5 minutes to set up, and you never start with an empty chat again\n\nThe full instructions can be found in the article below",
-                "url": "https://x.com/Bober_smart/status/2119070145284841481",
-                "source": "@Bober_smart",
-                "date": "Sat Nov 07 14:11:07 +0000 2026",
-                "metrics": {
-                  "favorites": 1184,
-                  "retweets": 128,
-                  "views": "95725"
-                }
-              },
-              {
-                "title": "Introducing GPT‑6 Cyber: a major advance in security research that pairs stronger capabilities with better model alignme",
-                "summary": "Introducing GPT‑6 Cyber: a major advance in security research that pairs stronger capabilities with better model alignment.\n\nThe model powered the Linux kernel research we announced yesterday, and security teams at companies like Mozilla, Palo Alto Networks, Calif, and Cisco—alongside our own at OpenAI—are already putting it to work.\n\nGPT-6 Cyber is available to select Daybreak Red customers and we are expanding access over time.\n\nhttps://t.co/Nzab3Z1Td6",
-                "url": "https://x.com/OpenAI/status/2118390190246879554",
-                "source": "@OpenAI",
-                "date": "Thu Nov 05 17:09:13 +0000 2026",
-                "metrics": {
-                  "favorites": 21431,
-                  "retweets": 2003,
-                  "views": "4131844"
-                }
-              },
-              {
-                "title": "Oh my god, Anthropic is so desperate to IPO before democrats take control of house and senate that it cut its IPO valuat",
-                "summary": "Oh my god, Anthropic is so desperate to IPO before democrats take control of house and senate that it cut its IPO valuation target by FIFTY PERCENT to $ 1 trillion even below the $1.25 trillion valuation OpenAI fetched in its last private fundraise https://t.co/PuBrSWS4iW",
-                "url": "https://x.com/DarioCpx/status/2120121819768520721",
-                "source": "@DarioCpx",
-                "date": "Tue Nov 10 11:50:06 +0000 2026",
-                "metrics": {
-                  "favorites": 321,
-                  "retweets": 39,
-                  "views": "12212"
-                }
-              },
-              {
-                "title": "I can't f*cking believe this is public: Anthropic, OpenAI, Google, Vercel and Hugging Face put the skills behind their o",
-                "summary": "I can't f*cking believe this is public: Anthropic, OpenAI, Google, Vercel and Hugging Face put the skills behind their own AI on GitHub, and almost nobody's using them\n\n1. Anthropic's skills · 188K stars\nthe same skills that power Claude's own Word, PDF, PowerPoint and Excel features. Anthropic open-sourced the whole library\nhttps://t.co/VXyzL4QA6A\n\n2. Vercel's agent skills · 33.7K stars\nthe rules Vercel's own engineers use: 40+ React fixes ranked by impact, a UI audit with 100+ checks and a one-command deploy\nhttps://t.co/QXkhnsOewP\n\n3. OpenAI's skills · 28.6K stars\n5 of these ship inside Codex itself. 38 more passed OpenAI's own review: fix failing CI, turn Figma into code, deploy in one step\nhttps://t.co/v9fUwwByH5\n\n4. Google's skills · 21.5K stars\nbuilt and tested inside Google first, then re-checked every week. a skill only ships if it makes the agent faster and more accurate\nhttps://t.co/aqIy9Bjw2s\n\n5. Hugging Face's skills · 11.2K stars\nyour agent fine-tunes models on cloud GPUs, searches datasets and tracks training runs. no ML degree needed\nhttps://t.co/VYNLnyOD5d\n\nthe companies building AI just handed you the playbook they use themselves\n\nsave it before everyone else finds it",
-                "url": "https://x.com/danikkk_wqs/status/2119826951388991537",
-                "source": "@danikkk_wqs",
-                "date": "Mon Nov 09 16:18:24 +0000 2026",
-                "metrics": {
-                  "favorites": 202,
-                  "retweets": 21,
-                  "views": "25416"
-                }
-              },
-              {
-                "title": "OpenAI is f*cking cooking... Sam Altman's team just shared 106 Codex plugins and skills for free, and most of them repla",
-                "summary": "OpenAI is f*cking cooking... Sam Altman's team just shared 106 Codex plugins and skills for free, and most of them replace a tool you already pay for\n\n62 plugins, 44 skills, 170,000 GitHub stars. the average team pays $2,000 a month for the apps these plug into. Codex now runs them for you at $0 extra\n\npick by the job that eats your week:\n\n→ shipping an app: build-ios-apps, build-web-apps, vercel\n→ getting paid: stripe, shopify\n→ design: figma, canva, adobe\n→ inbox and meetings: gmail, slack, zoom, granola\n→ keeping it safe: codex-security, sentry\n\nopen Codex, ask it to install the plugin by name, connect your account and give it the first task\n\nplugins: https://t.co/OTm3idf2a4\nskills: https://t.co/OIahJIqKYw\n\nmost people will scroll past this and keep paying for 10 apps. you just need one plugin to start\n\nthe whole stack, running live below ↓",
-                "url": "https://x.com/mika_systems/status/2119876302903636459",
-                "source": "@mika_systems",
-                "date": "Mon Nov 09 19:34:30 +0000 2026",
-                "metrics": {
-                  "favorites": 221,
-                  "retweets": 38,
-                  "views": "15168"
-                }
-              }
-            ]
+            "tool": "summarize",
+            "summary": "- Safety guardrails require user confirmation before sending messages.\n- AI agents automate web lookup and paper reading.",
+            "bullets": [
+              "Safety guardrails require user confirmation before sending messages.",
+              "AI agents automate web lookup and paper reading."
+            ],
+            "bullet_count": 2,
+            "focus": "safety"
           }
         }
       ]
@@ -768,8 +647,8 @@
             "arxiv_id": "1706.03762",
             "url": "https://arxiv.org/abs/1706.03762",
             "pdf_url": "https://arxiv.org/pdf/1706.03762.pdf",
-            "pdf_path": "D:\\K5-L3B-DAY03-111-ResearchAgentToolEval\\starter_v0\\arxiv_papers\\1706.03762.pdf",
-            "txt_path": "D:\\K5-L3B-DAY03-111-ResearchAgentToolEval\\starter_v0\\arxiv_papers\\1706.03762.txt",
+            "pdf_path": "C:\\Users\\Thinkpad T14 G4\\K5-L3B-DAY03-NguyenVanHau-2A202603932-PromptEngineeringToolCalling\\starter_v0\\arxiv_papers\\1706.03762.pdf",
+            "txt_path": "C:\\Users\\Thinkpad T14 G4\\K5-L3B-DAY03-NguyenVanHau-2A202603932-PromptEngineeringToolCalling\\starter_v0\\arxiv_papers\\1706.03762.txt",
             "page_count": 15,
             "pages_read": 3,
             "chars_returned": 8000,

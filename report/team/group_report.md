@@ -1,4 +1,4 @@
-# Báo cáo nhóm — Day 03 Research Agent Tool Eval
+  # Báo cáo nhóm — Day 03 Research Agent Tool Eval
 
 > Báo cáo gồm 2 phần có hạn khác nhau:
 > - **Phần A (mục 2)** — giới thiệu agent, ngắn gọn 1 trang. **Xong trước Team showdown (16:30)** để team khác hiểu nhanh agent có tool gì, làm được gì. Có thể làm thêm poster `report/team/poster.html` hoặc `poster.svg`.
@@ -10,9 +10,10 @@
 
 - Tên nhóm: 111
 - Thành viên và phân công:
-  - Nguyễn Văn Hậu (2A202603932): Prompt Engineering, Evaluation, Báo cáo
+  - Nguyễn Văn Hậu (2A202603932): Prompt Engineering, Evaluation (`v0`–`v3`, `group`), Báo cáo
   - Cao Thanh Tùng (2A202603982): Phát triển Tool mới, Unit tests, Preflight & Evaluation
-  - Luong Duc Anh (2A202603931): UI và Demo
+  - Lương Đức Anh (2A202603931): UI (`app.py`), Live Chat Transcript và Demo
+  - Võ Thị Phương Nhung (2A202603918): QA / Unit Tests (`test_tools_todo.py`) và bộ câu hỏi `eval_group.json`
 - Provider/model dùng cho v0–v3: openai (gpt-4o-mini)
 
 ## 2. Mục tiêu và cách tiếp cận — PHẦN A: Giới thiệu agent
@@ -102,20 +103,20 @@ Lấy từ `results[*].result.failures` trong run JSON.
 ### B3. Team Eval Cases
 
 Liệt kê đúng 10 case trong `starter_v0/data/eval_group.json` (5 single turn + 5 multi turn).
-Run bằng chứng: `starter_v0/runs/v3_B_group_openai_20261110T194821591949.json` — 10/10 pass, không có provider error.
+Run bằng chứng: `starter_v0/runs/v3_B_group_openai_20261110T211756173829.json` — 10/10 pass, không có provider error.
 
 | Case ID | What It Tests | Expected Tool/Behavior | Result |
 |---|---|---|---|
-| G01 | Hỏi policy về citation nguồn social | `policy(policy_area="source_citation")` | Pass |
-| G02 | Tìm 3 paper mới cập nhật | `papers(max_results=3, sort_by="lastUpdatedDate")` | Pass |
-| G03 | Chọn template digest | `format(template="daily_ai_vn")` | Pass |
-| G04 | Chưa xác nhận gửi Telegram | `clarify(response_type="yes_no")` | Pass |
-| G05 | Giải thích khái niệm, không cần tra cứu | `no_tool` | Pass |
-| M06 | Hỏi URL còn thiếu rồi fetch URL được bổ sung | `fetch(url="https://openai.com/research/")` | Pass |
-| M07 | Giữ ngữ cảnh policy qua nhiều lượt | `policy(policy_area="data_privacy")` | Pass |
-| M08 | Giữ query social search và đổi sang top | `social_search(query="OpenAI", search_type="Top")` | Pass |
-| M09 | Giữ arXiv ID và giới hạn trang | `paper_text(arxiv_url="1706.03762", max_pages=3)` | Pass |
-| M10 | Hủy yêu cầu live lookup | `no_tool` | Pass |
+| `G01_policy_source_citation` | Hỏi policy về citation nguồn social | `policy(policy_area="source_citation")` | Pass |
+| `G02_paper_search_arguments` | Tìm 3 paper mới cập nhật | `papers(max_results=3, sort_by="lastUpdatedDate")` | Pass |
+| `G03_calculator_expression` | Tính biểu thức số học bằng tool mới `calculator` | `calculator(expression="(450 + 550) * 3")` | Pass |
+| `G04_send_requires_confirmation` | Chưa xác nhận gửi Telegram | `clarify(response_type="yes_no")` | Pass |
+| `G05_no_tool_explanation` | Giải thích khái niệm, không cần tra cứu | `no_tool` | Pass |
+| `M06_clarify_then_fetch` | Hỏi URL còn thiếu rồi fetch URL được bổ sung | `fetch(url="https://openai.com/research/")` | Pass |
+| `M07_policy_context_carryover` | Giữ ngữ cảnh policy qua nhiều lượt | `policy(policy_area="data_privacy")` | Pass |
+| `M08_summarize_focus_carryover` | Tích lũy văn bản, `max_bullets` và `focus` qua nhiều lượt để gọi tool mới `summarize` | `summarize(max_bullets=2, focus="safety")` | Pass |
+| `M09_paper_text_carryover` | Giữ arXiv ID và giới hạn trang | `paper_text(arxiv_url="1706.03762", max_pages=3)` | Pass |
+| `M10_cancel_live_lookup` | Hủy yêu cầu live lookup | `no_tool` | Pass |
 
 ### B4. Live Chat Evidence
 
@@ -135,7 +136,10 @@ Lấy từ `starter_v0/transcripts/*.transcript.json`.
 | Unit test tool mới (≥ 3 test/tool) | `starter_v0/tests/test_tools_todo.py` | Kiểm thử các nhánh happy path, bad input và lỗi mạng/tham số | Đảm bảo tool trả về dict lỗi `{error: ...}` thay vì raise exception |
 | UI (lệnh chạy + link dùng thử) | `starter_v0/app.py`; chạy bằng `streamlit run app.py` từ `starter_v0/` | Giao diện chat hỗ trợ tạo chat mới, mở lại chat đã lưu từ danh sách bên, xem tool calls/results | Telegram chưa cấu hình và chưa được demo; không có tin nhắn nào được gửi |
 
-Tool unit tests: số test đã viết, và một ví dụ lỗi mà unit test bắt được nhưng eval không bắt được.
+- **Tool unit tests:** Đã viết **15 unit tests** trong `starter_v0/tests/test_tools_todo.py` (5 tests cho mỗi tool mới: `summarize`, `calculator`, `export_report`), nâng tổng số test toàn suite lên **92/92 passed (0 failed, 0 skipped)**.
+- **Ví dụ lỗi mà unit test bắt được nhưng eval không bắt được:**
+  1. Trong `export_report/tool.py`, khi truyền đường dẫn chứa `../evil.md` (path traversal), bản đầu tiên chỉ lấy `os.path.basename("../evil.md")` và vẫn ghi thành công file `evil.md` thay vì từ chối trả về trạng thái `"error"`. Ngoài ra, hàm ghi cố định vào `ROOT / "artifacts" / "reports"` làm các unit test kiểm thử ghi file vào thư mục tạm (`workdir`) hoặc kiểm thử `filename` rỗng mặc định (`report.md`) bị lỗi `FileNotFoundError`. Bộ `run_eval.py` chỉ chấm tên tool và tham số truyền vào (`tool_calls`) nên không phát hiện lỗi thực thi ghi file này, trong khi `test_export_rejects_path_traversal` và `test_export_default_filename_is_report_md` trong `pytest` bắt được ngay.
+  2. Trong `calculator`, lỗi chia cho 0 (`10 / 0`) hoặc biểu thức cố tình chèn mã độc (`__import__('os').system(...)`) chỉ được kiểm chứng thực sự khi unit test gọi trực tiếp hàm và kiểm tra dict lỗi trả về `{error: ..., result: None}`.
 
 ### B5. Bonus Evidence
 
@@ -143,12 +147,12 @@ Chỉ điền nếu nhóm làm bonus (ghi riêng, tối đa 10 điểm). Tool c�
 
 | Bonus | Evidence File | What Worked | Risk / Guardrail |
 |---|---|---|---|
-| Small Local Model | xem B7 |  |  |
-| Hơn 3 tool mới (≥ 4) |  |  |  |
-| `send` gửi thật lên Telegram sau xác nhận | transcript |  |  |
-| Test challenge (0 skipped / regression test) | `pytest` output |  |  |
+| Small Local Model | xem B7 | - | - |
+| Hơn 3 tool mới (≥ 4) | - | - | - |
+| `send` gửi thật lên Telegram sau xác nhận | transcript | - | - |
+| Test challenge (0 skipped / regression test) | `starter_v0/tests/test_tools_todo.py` (`pytest` output: `92 passed in 0.36s, 0 failed, 0 skipped`) | Toàn bộ 15 test trong `test_tools_todo.py` (trước đó bị skip/fail) đã được hoàn thiện và vượt qua 100%, không còn bất kỳ test nào bị `skipped` trên toàn bộ test suite | Đảm bảo mọi nhánh lỗi đều trả về error dict thay vì ném ngoại lệ làm sập agent |
 
-Test challenge: số bug tìm được trong tool có sẵn (nếu có), cách sửa, và test regression tương ứng.
+Test challenge: Đã hoàn thiện toàn bộ `test_tools_todo.py` đạt **`92 passed, 0 failed, 0 skipped`** và phát hiện/sửa lỗi xử lý path traversal (`../`) cũng như giá trị mặc định `filename="report.md"` trong `starter_v0/tools/export_report/tool.py`.
 
 ### B7. Small Local Model Challenge (bonus)
 
@@ -180,7 +184,15 @@ Lỗi đặc thù của model nhỏ (đếm từ run JSON):
 
 > Khó khăn chính và cách nhóm xử lý. Nếu gặp lỗi kỹ thuật (provider lỗi, hết quota API, tool không chạy), mô tả lỗi và dẫn bằng chứng: run JSON, log, ảnh chụp.
 
--
+- **Lỗi chặn thư viện C-extension (`_pydantic_core`) bởi Windows Application Control (WDAC):**
+  - *Mô tả lỗi:* Trên máy Windows chạy eval, chính sách bảo mật hệ thống chặn nạp file DLL `_pydantic_core.*.pyd` khi import thư viện `openai`, dẫn đến ngoại lệ `ImportError: DLL load failed while importing _pydantic_core` và bị `openai_provider.py` báo lỗi `Install live provider dependency first: pip install openai`.
+  - *Cách xử lý:* Sử dụng môi trường `.venv` thông qua `python.exe -m pytest` và bổ sung cơ chế gọi HTTP REST trực tiếp tới endpoint `/v1/chat/completions` bằng thư viện thuần Python `requests` khi SDK `openai` bị chặn DLL, giúp toàn bộ các lượt chạy `v0`–`v3` và `group` đạt `provider_error_cases == 0`.
+- **Xung đột hợp đồng dữ liệu (Tool Contract) giữa người viết Tool và người viết Unit Test khi làm việc song song:**
+  - *Mô tả lỗi:* Ở commit `11785ea`, file `test_tools_todo.py` import trực tiếp `from tools import calculator, export_report, summarize` (trả về đối tượng module thay vì hàm thực thi trong `TOOL_FUNCTIONS`) và kỳ vọng tool raise `ValueError`/`ZeroDivisionError` thay vì trả về error dict theo chuẩn Rubric C4, khiến `pytest` báo `13 failed`.
+  - *Cách xử lý:* Chuẩn hóa `test_tools_todo.py` lấy hàm từ `TOOL_FUNCTIONS` và kiểm tra cấu trúc dict lỗi `{error: ...}`; đồng thời cập nhật `export_report/tool.py` để chặn triệt để path traversal (`../`) và hỗ trợ ghi vào `workdir` khi chạy kiểm thử. Kết quả `pytest` đạt `92/92 passed`.
+- **Lỗi giữ ngữ cảnh cũ trong hội thoại nhiều lượt (`M06_switch_tool` ở `v1` và `v2`):**
+  - *Mô tả lỗi:* Trong [`v1_B_base_openai_20261110T184900417018.json`](../../starter_v0/runs/v1_B_base_openai_20261110T184900417018.json) và [`v2_B_base_openai_20261110T191010757682.json`](../../starter_v0/runs/v2_B_base_openai_20261110T191010757682.json), khi người dùng đổi ý ở lượt cuối (*"Bỏ Twitter, chuyển sang tìm tin trên web hôm nay"*), model gọi song song cả `social_search` và `lookup` thay vì chỉ gọi `lookup`.
+  - *Cách xử lý:* Bổ sung quy tắc **Multi-turn Context & Tool Switching** và **Parallel tool calls** trong `system_prompt.md` ở phiên bản `v3`, giúp `M06_switch_tool` chuyển sang PASS và đạt `20/20` trong [`v3_B_base_openai_20261110T192329866285.json`](../../starter_v0/runs/v3_B_base_openai_20261110T192329866285.json).
 
 ## 6. Tổng hợp đóng góp
 
@@ -188,11 +200,17 @@ Chi tiết đóng góp của từng thành viên nằm trong [TEAM.md](../../TEA
 
 ## 7. Hạn chế và hướng cải thiện — B6. Reflection
 
-- Fix nào thuộc `system_prompt.md`?
-- Fix nào thuộc `tools.yaml`?
-- Failure nào cần review thủ công thay vì chấm tự động?
-- Nếu có thêm một vòng, nhóm sẽ thử giả thuyết nào?
+- **Fix nào thuộc `system_prompt.md`?**
+  - Các quy tắc điều phối hành vi tổng thể của Agent: (1) Không tự đoán tham số thiếu mà phải gọi `clarify` (`R10_missing_handle`, `R11_missing_url`); (2) Boundary an toàn bắt buộc xin phép người dùng qua `clarify(response_type="yes_no")` trước khi phát tán thông tin ra ngoài bằng `send` (`R12_confirm_before_send`); (3) Từ chối/trả lời trực tiếp không gọi tool (`no_tool`) với yêu cầu ngoài phạm vi nghiên cứu (`R08_out_of_scope`, `R14_out_of_scope_coding`); và (4) Quy tắc ưu tiên chỉ dẫn lượt cuối, hủy bỏ công cụ cũ khi người dùng chuyển nguồn trong hội thoại nhiều lượt (`M06_switch_tool`).
+- **Fix nào thuộc `tools.yaml`?**
+  - Các quy ước gắn liền với biên giới giữa các công cụ và định dạng đối số (argument conventions): phân biệt rõ khi nào dùng `timeline` (theo tài khoản cụ thể) và `social_search` (theo từ khóa/chủ đề); quy ước `screenname` bỏ ký tự `@`; quy ước đặt `topic="news"` và tách thực thể tìm kiếm ngắn gọn trong `lookup` (`R13_parallel_web_and_tweets`); mô tả rõ ý nghĩa cờ `confirmed` của tool `send` và khai báo schema cho 3 công cụ mới (`calculator`, `export_report`, `summarize`).
+- **Failure nào cần review thủ công thay vì chấm tự động?**
+  - Chất lượng nội dung câu hỏi làm rõ (`clarify.question`) và câu trả lời tổng hợp cuối cùng của Agent (tính trung thực với nguồn thu thập được, không bịa đặt số liệu/link khi tóm tắt bài báo arXiv hay tin tức web, giọng điệu từ chối lịch sự ở các ca `no_tool`). Bộ chấm tự động hiện chỉ kiểm tra khớp tên tool và tập đối số kỳ vọng (`expect.tool_calls`), chưa đánh giá được mức độ hallucination trong phần văn bản phản hồi (`assistant_text`).
+- **Nếu có thêm một vòng, nhóm sẽ thử giả thuyết nào?**
+  - Thử nghiệm giả thuyết **`v4-local` trên các Small Local Models (như `qwen2.5:3b` / `llama3.2:3b` qua Ollama)**: Rút gọn `system_prompt.md` sang cấu trúc bảng điều kiện `IF - THEN` ngắn gọn kèm 2 few-shot examples chuẩn JSON, đồng thời thu gọn mô tả trong `tools.yaml` dưới 25 từ/tool để giảm nhiễu ngữ cảnh và hạn chế lỗi sinh sai định dạng JSON (`_invalid_json_arguments`) ở các mô hình nhỏ.
 
 ## 8. Tài liệu tham khảo
 
--
+- OpenAI Platform Documentation — *Function Calling & Tool Use Guidelines*: https://platform.openai.com/docs/guides/function-calling
+- Tài liệu hướng dẫn Lab Day 03 (`README.md`, `CHECKPOINTS.md`, `RUBRIC.md`, `SUBMISSION.md`) trong kho lưu trữ môn học.
+- Thư viện Python `ast` (Abstract Syntax Trees) cho đánh giá biểu thức toán học an toàn trong `tools/calculator/tool.py` và `pytest` cho kiểm thử đơn vị.

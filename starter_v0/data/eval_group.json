@@ -23,13 +23,13 @@
       "metadata": {"what_it_tests": "Route yêu cầu paper tới papers và giữ đúng số lượng cùng tiêu chí sắp xếp lastUpdatedDate."}
     },
     {
-      "id": "G03_format_digest_template",
+      "id": "G03_calculator_expression",
       "phase": "B",
       "suite": "group",
-      "query": "Đã có các mục tin AI bên dưới, hãy trình bày thành bản tin hằng ngày bằng template daily_ai_vn.",
-      "failure_type": "wrong_arg_value",
-      "expect": {"tool_calls": [{"name": "format", "args": {"template": "daily_ai_vn"}}]},
-      "metadata": {"what_it_tests": "Yêu cầu chỉ định khuôn trình bày phải route tới format và truyền đúng template daily_ai_vn."}
+      "query": "Dùng tool calculator để tính giá trị biểu thức số học của chi phí nghiên cứu: (450 + 550) * 3",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "calculator", "args": {"expression": "(450 + 550) * 3"}}]},
+      "metadata": {"what_it_tests": "Yêu cầu tính toán biểu thức số học cụ thể phải route tới tool mới calculator với đúng expression."}
     },
     {
       "id": "G04_send_requires_confirmation",
@@ -76,17 +76,17 @@
       "metadata": {"what_it_tests": "Giữ ngữ cảnh policy qua các lượt và chọn đúng policy_area=data_privacy."}
     },
     {
-      "id": "M08_social_search_carryover",
+      "id": "M08_summarize_focus_carryover",
       "phase": "B",
       "suite": "group",
       "turns": [
-        {"role": "user", "content": "Tìm tweet về OpenAI."},
-        {"role": "user", "content": "Chỉ lấy các tweet phổ biến nhất."},
-        {"role": "user", "content": "Giữ chủ đề OpenAI và dùng chế độ top."}
+        {"role": "user", "content": "Mình có đoạn văn bản nghiên cứu này cần tóm tắt bằng tool summarize: 'AI agents automate web lookup and paper reading. Safety guardrails require user confirmation before sending messages. Unit tests verify tool error handling.'"},
+        {"role": "user", "content": "Chỉ rút gọn tối đa 2 ý chính thôi nhé."},
+        {"role": "user", "content": "Tập trung vào từ khóa safety."}
       ],
       "failure_type": "wrong_arg_value",
-      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "OpenAI", "search_type": "Top"}}]},
-      "metadata": {"what_it_tests": "Mang query từ lượt trước và cập nhật search_type=Top từ yêu cầu bổ sung."}
+      "expect": {"tool_calls": [{"name": "summarize", "args": {"max_bullets": 2, "focus": "safety"}}]},
+      "metadata": {"what_it_tests": "Tích lũy văn bản, số lượng ý chính (max_bullets=2) và chủ đề (focus=safety) qua nhiều lượt để gọi tool mới summarize."}
     },
     {
       "id": "M09_paper_text_carryover",

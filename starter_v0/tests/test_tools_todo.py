@@ -18,7 +18,11 @@ import re
 
 import pytest
 
-from tools import calculator, export_report, summarize  # TODO: đổi path import
+from tools import TOOL_FUNCTIONS
+
+calculator = TOOL_FUNCTIONS["calculator"]
+export_report = TOOL_FUNCTIONS["export_report"]
+summarize = TOOL_FUNCTIONS["summarize"]
 
 
 # ============================== Helpers ==============================
@@ -27,6 +31,10 @@ BULLET_RE = re.compile(r"^\s*(?:[-*•+]|\d+[.)])\s+(.*\S)")
 
 def bullets(result):
     """Chuẩn hóa output của summarize thành list[str]."""
+    if isinstance(result, dict):
+        if "bullets" in result and isinstance(result["bullets"], list):
+            return [str(b).strip() for b in result["bullets"] if str(b).strip()]
+        result = result.get("summary", "")
     if isinstance(result, (list, tuple)):
         return [str(b).strip() for b in result if str(b).strip()]
     return [m.group(1) for line in str(result).splitlines() if (m := BULLET_RE.match(line))]
@@ -34,6 +42,8 @@ def bullets(result):
 
 def num(value):
     """Chuẩn hóa output của calculator thành float."""
+    if isinstance(value, dict):
+        value = value.get("result")
     return float(value)
 
 
@@ -76,8 +86,8 @@ def test_summarize_focus_keyword_in_output():
 
 def test_summarize_empty_text_raises():
     for bad in ("", "   \n\t"):
-        with pytest.raises(ValueError):
-            summarize(bad)
+        res = summarize(bad)
+        assert isinstance(res, dict) and res.get("error")
 
 
 def test_summarize_output_shorter_than_input():
@@ -101,19 +111,20 @@ def test_calculator_precedence_and_power():
 
 
 def test_calculator_division_by_zero_raises():
-    with pytest.raises((ZeroDivisionError, ValueError)):
-        calculator("10 / 0")
+    res = calculator("10 / 0")
+    assert isinstance(res, dict) and res.get("error") and res.get("result") is None
 
 
 def test_calculator_rejects_code_injection():
-    with pytest.raises((ValueError, SyntaxError, TypeError)):
-        calculator("__import__('os').system('echo hacked')")
+    res = calculator("__import__('os').system('echo hacked')")
+    assert isinstance(res, dict) and res.get("error") and res.get("result") is None
 
 
 # ============================== export_report ==============================
 def test_export_writes_utf8_markdown(workdir):
     content = "# Bản tin AI\n\n- Doanh thu tăng 38,9%\n- Rủi ro: tỷ giá\n"
-    export_report("ai_digest.md", content)
+    res = export_report("ai_digest.md", content)
+    assert res.get("status") == "saved"
     assert (workdir / "ai_digest.md").read_text(encoding="utf-8") == content
 
 
@@ -125,16 +136,14 @@ def test_export_overwrite_true_replaces_file(workdir):
 
 def test_export_overwrite_false_keeps_existing_file(workdir):
     (workdir / "r.md").write_text("nội dung cũ", encoding="utf-8")
-    try:
-        export_report("r.md", "nội dung mới", overwrite=False)
-    except FileExistsError:
-        pass  # raise hoặc trả lỗi đều hợp lệ; file cũ PHẢI giữ nguyên
+    res = export_report("r.md", "nội dung mới", overwrite=False)
+    assert res.get("status") == "skipped"
     assert (workdir / "r.md").read_text(encoding="utf-8") == "nội dung cũ"
 
 
 def test_export_rejects_path_traversal(workdir):
-    with pytest.raises(ValueError):
-        export_report("../evil.md", "x")
+    res = export_report("../evil.md", "x")
+    assert isinstance(res, dict) and res.get("status") == "error" and res.get("error")
     assert not (workdir.parent / "evil.md").exists()
 
 
