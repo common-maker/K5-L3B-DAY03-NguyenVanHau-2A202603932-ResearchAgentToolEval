@@ -12,15 +12,19 @@ Ví dụ: `20241234_NguyenVanAn.md`.
 
 ## 2. Phần việc phụ trách
 
-...
+- Dev tool mới
+- Phối hợp với eval, qa đánh giá tool hiện tại
 
 ## 3. Đóng góp cụ thể
 
-...
+- Viết 3 tools mới: summarize, calculator, export_report
 
 ## 4. Bằng chứng
 
 - File/commit/PR:
+
+  - f9c3ad352ead15390ecadce40c5bda19a44da6a9
+
 - AI/công cụ đã dùng và cách tự kiểm tra kết quả:
 
 ## 5. Tự đánh giá
