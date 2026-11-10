@@ -82,9 +82,9 @@ Lấy từ `starter_v0/artifacts/version_log.csv` và `starter_v0/runs/*.json`. 
 | Version | Changed Artifact | Hypothesis | Metric Before | Metric After | Run File |
 |---|---|---|---:|---:|---|
 | v0 | baseline | Đo hành vi chưa tối ưu (starter còn anti-patterns: đoán bừa, gửi không cần xác nhận) | - | 0.70 (14/20 passed) | `runs/v0_B_base_openai_20261110T182630385085.json` |
-| v1 | `system_prompt.md` | Xóa anti-patterns; thêm routing rule; clarify khi thiếu info; xin xác nhận trước khi gửi; no-tool khi out-of-scope | 0.70 | 0.95 (19/20 passed) | `runs/v1_B_base_openai_20261110T184852001862.json` |
-| v2 | `tools.yaml` | Viết lại descriptions chi tiết (khi nào dùng / không dùng); chuẩn hóa convention arguments; khai báo 3 tool mới | 0.95 | 0.95 (19/20 passed) | `runs/v2_B_base_openai_20261110T190336814536.json` |
-| v3 |  |  |  |  |  |
+| v1 | `system_prompt.md` | Xóa anti-patterns; thêm routing rule; clarify khi thiếu info; xin xác nhận trước khi gửi; no-tool khi out-of-scope | 0.70 | 0.95 (19/20 passed) | `runs/v1_B_base_openai_20261110T184900417018.json` |
+| v2 | `tools.yaml` | Viết lại descriptions chi tiết (khi nào dùng / không dùng); chuẩn hóa convention arguments; khai báo 3 tool mới | 0.95 | 0.95 (19/20 passed) | `runs/v2_B_base_openai_20261110T191010757682.json` |
+| v3 | `system_prompt.md` | Thêm quy tắc multi-turn context switching: hủy bỏ nguồn cũ khi người dùng yêu cầu chuyển sang nguồn mới | 0.95 | 1.00 (20/20 passed) | `runs/v3_B_base_openai_20261110T191855097851.json` |
 
 ### B2. Failure Analysis
 
