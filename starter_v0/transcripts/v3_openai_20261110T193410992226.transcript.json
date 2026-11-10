@@ -1,0 +1,279 @@
+{
+  "transcript_id": "v3_openai_20261110T193410992226",
+  "version": "v3",
+  "artifact_version": "v3+p914d80f78b74+t24f89fcf3ec1",
+  "prompt_hash": "914d80f78b7401b8d20438d8637f6d41b3317237ddace34b875c858119fc9f93",
+  "tools_hash": "24f89fcf3ec1527baaada7c3e35f382ad03665e81518adc5374a8c50a7cd910f",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "system_prompt": "/home/opc/randomdev/K5-L3B-DAY03-NguyenVanHau-2A202603932-PromptEngineeringToolCalling/starter_v0/artifacts/system_prompt.md",
+  "tools": "/home/opc/randomdev/K5-L3B-DAY03-NguyenVanHau-2A202603932-PromptEngineeringToolCalling/starter_v0/artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-11-10T19:34:10",
+  "updated_at": "2026-11-10T19:34:27",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-11-10T19:34:10",
+      "user": "Find recent web news about AI agents using tools and give me a short summary with source links.",
+      "status": "answered",
+      "assistant_text": "Here are some recent web news articles about AI agents:\n\n1. **[AI Agents Advance Atomic Modeling and Reveal How Aluminum Nanoparticles Oxidize](https://www.asiaresearchnews.com/content/ai-agents-advance-atomic-modeling-and-reveal-how-aluminum-nanoparticles-oxidize)**  \n   Source: Asia Research News  \n   Summary: AI agents are being utilized to organize project knowledge and support validation planning in atomic modeling. This reflects a shift towards human-agent collaboration in research, potentially aiding in recursive self-improvement of AI systems.\n\n2. **[Security teams want to spot unusual AI agent behavior while they’re still defining normal](https://www.helpnetsecurity.com/2026/11/10/abnormal-ai-behavioral-security-report)**  \n   Source: Help Net Security  \n   Summary: AI agents are a top investment for behavioral monitoring according to a recent report. Organizations are focusing on understanding the actions of AI agents to ensure security and compliance.\n\n3. **[Amazon and Walmart Bring AI Agents Closer to the Purchase](https://www.pymnts.com/news/artificial-intelligence/2026/amazon-walmart-bring-ai-agents-closer-purchase)**  \n   Source: PYMNTS  \n   Summary: Both Amazon and Walmart are enhancing their AI shopping agents to facilitate customer purchases. Walmart's agent, Sparky, aims to streamline shopping experiences, while Amazon focuses on business applications for AI agents.\n\n4. **[AI agents, top languages and the fastest-growing developer communities](https://qz.com/ai-agents-top-languages-fastest-growing-developer-communities-github)**  \n   Source: Quartz  \n   Summary: GitHub's report highlights the increasing role of AI agents in software development, with agents now initiating a significant portion of code changes, reflecting a shift in developer practices.\n\n5. **[AI agents are crossing boundaries. Is your crisis comms plan ready?](https://www.ragan.com/ai-agents-are-crossing-boundaries-is-your-crisis-comms-plan-ready)**  \n   Source: Ragan Communications  \n   Summary: Recent incidents involving AI agents underscore the need for organizations to prepare crisis communication plans to handle potential rogue behavior from AI systems.\n\nThese articles provide insights into the evolving role of AI agents across various sectors, including research, security, retail, and software development.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "AI agents",
+                "topic": "news",
+                "timeframe": "day",
+                "max_results": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "AI agents",
+                "topic": "news",
+                "timeframe": "day",
+                "max_results": 5
+              },
+              "result": {
+                "tool": "web_search",
+                "query": "AI agents",
+                "topic": "news",
+                "timeframe": "day",
+                "items": [
+                  {
+                    "title": "AI Agents Advance Atomic Modeling and Reveal How Aluminum Nanoparticles Oxidize | Asia Research News",
+                    "url": "https://www.asiaresearchnews.com/content/ai-agents-advance-atomic-modeling-and-reveal-how-aluminum-nanoparticles-oxidize",
+                    "source": "asiaresearchnews.com",
+                    "summary": "Throughout the workflow, AI agents organized project knowledge, retrieved evidence, and supported validation planning. Computational tools retained datasets, model versions, and evaluation reports. Still, researchers decided which models to accept, where to use them, and how to interpret the results. [...] The work reflects a broader shift from using AI for individual calculations to organizing research through human-agent collaboration. Such workflows could support future research into recursive self-improvement (RSI), in which feedback improves both a system's capabilities and its ability to make further improvements. Future agents could learn from validated outcomes to refine their planning and tool use, with each change assessed by researchers. [...] Journal: \n\nProceedings of the National Academy of Sciences (PNAS)\n\nNews topics:\n\nArtificial Intelligence\n\nMaterials\n\nTechnology\n\nAcademic disciplines:\n\nMaterials Science and Engineering\n\nArtificial intelligence\n\nComputational chemistry\n\nPhysics\n\nContent type:\n\nPeer Reviewed\n\nWebsite:\n\nAI Agents Advance Atomic Modeling and Reveal How Aluminum Nanoparticles Oxidize\n\nReference:\n\nTitle: Multi-AI agent framework reveals the \"oxide gatekeeper\" in aluminum nanoparticle oxidation",
+                    "score": 0.8173562
+                  },
+                  {
+                    "title": "Security teams want to spot unusual AI agent behavior while they’re still defining normal - Help Net Security",
+                    "url": "https://www.helpnetsecurity.com/2026/11/10/abnormal-ai-behavioral-security-report",
+                    "source": "helpnetsecurity.com",
+                    "summary": "AI agents topped the list of planned investments in behavioral monitoring in Abnormal AI’s 2026 State of Behavioral Security Report. Asked where their organizations would invest most over the next two years, 43% of respondents chose AI agents, more than three times the share who chose API integrations, the next most common answer. [...] An agent can act on someone’s behalf, gather information from several systems and choose steps the person did not specify. It may access a system that the person who assigned the task does not use directly. To assess that activity, a security team may need to know what the agent was asked to do, whose permissions it used and how the action fit the assignment.",
+                    "score": 0.7803451
+                  },
+                  {
+                    "title": "PYMNTS | Amazon and Walmart Bring AI Agents Closer to the Purchase",
+                    "url": "https://www.pymnts.com/news/artificial-intelligence/2026/amazon-walmart-bring-ai-agents-closer-purchase",
+                    "source": "pymnts.com",
+                    "summary": "The features also connect digital assistance to Walmart’s physical stores. Its Shop to Light capability lets shoppers locate an item on a store map and activate a flashing shelf label to find it, per the announcement. That gives Walmart a practical way to make its store network part of the AI shopping experience. An agent can help customers decide what they need, build a basket and find products in the aisle. [...] PYMNTS IntelligenceThe Prompt EconomyNewswireEventsSUBSCRIBEPartner With PYMNTS\n\nAboutContact\n\nPYMNTS.com home page\n\n# Amazon and Walmart Bring AI Agents Closer to the Purchase\n\nBy  PYMNTS   |  November 10, 2026\n\n|\n\nWalmart-retail-AI-digital-transformation\n\nWalmart wants its artificial intelligence shopping agent, Sparky, to turn a handwritten holiday list into a shopping cart. Amazon wants businesses to put agents to work buying supplies and managing purchases within company spending rules. [...] The moves highlight two fronts in the companies’ competition to influence how customers buy. Walmart is making Sparky more useful for everyday shopping, while Amazon is making the case for businesses to give AI greater responsibility for purchasing. Both approaches bring agents closer to the decisions that generate transactions.",
+                    "score": 0.7327644
+                  },
+                  {
+                    "title": "AI agents, top languages and the fastest-growing developer communities",
+                    "url": "https://qz.com/ai-agents-top-languages-fastest-growing-developer-communities-github",
+                    "source": "qz.com",
+                    "summary": "GitHub set out in its Octoverse 2026 report to highlight the year's biggest developer trends around AI agents, with findings on subjects from TypeScript and Rust to Morocco and the mining industry. At first glance, the headline numbers can read like a record of what developers freely prefer. Taken together, though, much of the change appears to have causes outside developers' own taste. Those causes include the limits of the services developers depend on, the models that their tools put in [...] ## Agents now start a large share of pull requests\n\nIllustration: Quartz\n\nIn about six months, developers handed AI agents the job of proposing new code, not just helping write it. The share of pull requests begun by agents climbed from 17% in March to over 40% by September 2026, according to GitHub. For more and more developers, the first step in a code change is now reviewing something an agent put forward instead of drafting it from scratch. [...] No single company owns this boom, and developers have more than one agent to choose from. Rival products are growing quickly alongside Microsoft's own, and OpenAI's Codex reached 4 million active users in April, up from 3 million, according to CNBC. The rise of Codex shows the shift to agents across the industry rather than inside a single vendor's product line. With several agents on offer, the strengths and limits of these tools now matter well beyond any one company. The AI a developer calls",
+                    "score": 0.69672287
+                  },
+                  {
+                    "title": "AI agents are crossing boundaries. Is your crisis comms plan ready? - Ragan Communications",
+                    "url": "https://www.ragan.com/ai-agents-are-crossing-boundaries-is-your-crisis-comms-plan-ready",
+                    "source": "ragan.com",
+                    "summary": "PR Daily\n Ragan Training\n Center for AI Strategy\n Insider\n Leadership Council\n Comms Week\n Comms Framework\n Awards Vault\n\n  Log In\n\nRagan Communications Logo\n\nArtificial Intelligence\n\n# AI agents are crossing boundaries. Is your crisis comms plan ready?\n\nUse this framework to prepare your team before something goes wrong.\n\nBy\n\nStephanie Nivinskus\n\nSHARE [...] Recent disclosures from OpenAI and Anthropic underscore the importance of readiness when AI agents go rogue. \n\nOn Oct. 23, OpenAI disclosed that an internal research model exploited a technical misconfiguration to access the internet during training. The company said it paused certain activities and strengthened its security controls. [...] 3. Practice before an incident happens: Use the worksheet’s 15-minute tabletop exercise to walk through a hypothetical incident involving an AI agent that sends confidential information to an unauthorized recipient. Identify gaps in your response process and assign responsibility for fixing them.",
+                    "score": 0.6565047
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Here are some recent web news articles about AI agents:\n\n1. **[AI Agents Advance Atomic Modeling and Reveal How Aluminum Nanoparticles Oxidize](https://www.asiaresearchnews.com/content/ai-agents-advance-atomic-modeling-and-reveal-how-aluminum-nanoparticles-oxidize)**  \n   Source: Asia Research News  \n   Summary: AI agents are being utilized to organize project knowledge and support validation planning in atomic modeling. This reflects a shift towards human-agent collaboration in research, potentially aiding in recursive self-improvement of AI systems.\n\n2. **[Security teams want to spot unusual AI agent behavior while they’re still defining normal](https://www.helpnetsecurity.com/2026/11/10/abnormal-ai-behavioral-security-report)**  \n   Source: Help Net Security  \n   Summary: AI agents are a top investment for behavioral monitoring according to a recent report. Organizations are focusing on understanding the actions of AI agents to ensure security and compliance.\n\n3. **[Amazon and Walmart Bring AI Agents Closer to the Purchase](https://www.pymnts.com/news/artificial-intelligence/2026/amazon-walmart-bring-ai-agents-closer-purchase)**  \n   Source: PYMNTS  \n   Summary: Both Amazon and Walmart are enhancing their AI shopping agents to facilitate customer purchases. Walmart's agent, Sparky, aims to streamline shopping experiences, while Amazon focuses on business applications for AI agents.\n\n4. **[AI agents, top languages and the fastest-growing developer communities](https://qz.com/ai-agents-top-languages-fastest-growing-developer-communities-github)**  \n   Source: Quartz  \n   Summary: GitHub's report highlights the increasing role of AI agents in software development, with agents now initiating a significant portion of code changes, reflecting a shift in developer practices.\n\n5. **[AI agents are crossing boundaries. Is your crisis comms plan ready?](https://www.ragan.com/ai-agents-are-crossing-boundaries-is-your-crisis-comms-plan-ready)**  \n   Source: Ragan Communications  \n   Summary: Recent incidents involving AI agents underscore the need for organizations to prepare crisis communication plans to handle potential rogue behavior from AI systems.\n\nThese articles provide insights into the evolving role of AI agents across various sectors, including research, security, retail, and software development.",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "AI agents",
+            "topic": "news",
+            "timeframe": "day",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "AI agents",
+            "topic": "news",
+            "timeframe": "day",
+            "items": [
+              {
+                "title": "AI Agents Advance Atomic Modeling and Reveal How Aluminum Nanoparticles Oxidize | Asia Research News",
+                "url": "https://www.asiaresearchnews.com/content/ai-agents-advance-atomic-modeling-and-reveal-how-aluminum-nanoparticles-oxidize",
+                "source": "asiaresearchnews.com",
+                "summary": "Throughout the workflow, AI agents organized project knowledge, retrieved evidence, and supported validation planning. Computational tools retained datasets, model versions, and evaluation reports. Still, researchers decided which models to accept, where to use them, and how to interpret the results. [...] The work reflects a broader shift from using AI for individual calculations to organizing research through human-agent collaboration. Such workflows could support future research into recursive self-improvement (RSI), in which feedback improves both a system's capabilities and its ability to make further improvements. Future agents could learn from validated outcomes to refine their planning and tool use, with each change assessed by researchers. [...] Journal: \n\nProceedings of the National Academy of Sciences (PNAS)\n\nNews topics:\n\nArtificial Intelligence\n\nMaterials\n\nTechnology\n\nAcademic disciplines:\n\nMaterials Science and Engineering\n\nArtificial intelligence\n\nComputational chemistry\n\nPhysics\n\nContent type:\n\nPeer Reviewed\n\nWebsite:\n\nAI Agents Advance Atomic Modeling and Reveal How Aluminum Nanoparticles Oxidize\n\nReference:\n\nTitle: Multi-AI agent framework reveals the \"oxide gatekeeper\" in aluminum nanoparticle oxidation",
+                "score": 0.8173562
+              },
+              {
+                "title": "Security teams want to spot unusual AI agent behavior while they’re still defining normal - Help Net Security",
+                "url": "https://www.helpnetsecurity.com/2026/11/10/abnormal-ai-behavioral-security-report",
+                "source": "helpnetsecurity.com",
+                "summary": "AI agents topped the list of planned investments in behavioral monitoring in Abnormal AI’s 2026 State of Behavioral Security Report. Asked where their organizations would invest most over the next two years, 43% of respondents chose AI agents, more than three times the share who chose API integrations, the next most common answer. [...] An agent can act on someone’s behalf, gather information from several systems and choose steps the person did not specify. It may access a system that the person who assigned the task does not use directly. To assess that activity, a security team may need to know what the agent was asked to do, whose permissions it used and how the action fit the assignment.",
+                "score": 0.7803451
+              },
+              {
+                "title": "PYMNTS | Amazon and Walmart Bring AI Agents Closer to the Purchase",
+                "url": "https://www.pymnts.com/news/artificial-intelligence/2026/amazon-walmart-bring-ai-agents-closer-purchase",
+                "source": "pymnts.com",
+                "summary": "The features also connect digital assistance to Walmart’s physical stores. Its Shop to Light capability lets shoppers locate an item on a store map and activate a flashing shelf label to find it, per the announcement. That gives Walmart a practical way to make its store network part of the AI shopping experience. An agent can help customers decide what they need, build a basket and find products in the aisle. [...] PYMNTS IntelligenceThe Prompt EconomyNewswireEventsSUBSCRIBEPartner With PYMNTS\n\nAboutContact\n\nPYMNTS.com home page\n\n# Amazon and Walmart Bring AI Agents Closer to the Purchase\n\nBy  PYMNTS   |  November 10, 2026\n\n|\n\nWalmart-retail-AI-digital-transformation\n\nWalmart wants its artificial intelligence shopping agent, Sparky, to turn a handwritten holiday list into a shopping cart. Amazon wants businesses to put agents to work buying supplies and managing purchases within company spending rules. [...] The moves highlight two fronts in the companies’ competition to influence how customers buy. Walmart is making Sparky more useful for everyday shopping, while Amazon is making the case for businesses to give AI greater responsibility for purchasing. Both approaches bring agents closer to the decisions that generate transactions.",
+                "score": 0.7327644
+              },
+              {
+                "title": "AI agents, top languages and the fastest-growing developer communities",
+                "url": "https://qz.com/ai-agents-top-languages-fastest-growing-developer-communities-github",
+                "source": "qz.com",
+                "summary": "GitHub set out in its Octoverse 2026 report to highlight the year's biggest developer trends around AI agents, with findings on subjects from TypeScript and Rust to Morocco and the mining industry. At first glance, the headline numbers can read like a record of what developers freely prefer. Taken together, though, much of the change appears to have causes outside developers' own taste. Those causes include the limits of the services developers depend on, the models that their tools put in [...] ## Agents now start a large share of pull requests\n\nIllustration: Quartz\n\nIn about six months, developers handed AI agents the job of proposing new code, not just helping write it. The share of pull requests begun by agents climbed from 17% in March to over 40% by September 2026, according to GitHub. For more and more developers, the first step in a code change is now reviewing something an agent put forward instead of drafting it from scratch. [...] No single company owns this boom, and developers have more than one agent to choose from. Rival products are growing quickly alongside Microsoft's own, and OpenAI's Codex reached 4 million active users in April, up from 3 million, according to CNBC. The rise of Codex shows the shift to agents across the industry rather than inside a single vendor's product line. With several agents on offer, the strengths and limits of these tools now matter well beyond any one company. The AI a developer calls",
+                "score": 0.69672287
+              },
+              {
+                "title": "AI agents are crossing boundaries. Is your crisis comms plan ready? - Ragan Communications",
+                "url": "https://www.ragan.com/ai-agents-are-crossing-boundaries-is-your-crisis-comms-plan-ready",
+                "source": "ragan.com",
+                "summary": "PR Daily\n Ragan Training\n Center for AI Strategy\n Insider\n Leadership Council\n Comms Week\n Comms Framework\n Awards Vault\n\n  Log In\n\nRagan Communications Logo\n\nArtificial Intelligence\n\n# AI agents are crossing boundaries. Is your crisis comms plan ready?\n\nUse this framework to prepare your team before something goes wrong.\n\nBy\n\nStephanie Nivinskus\n\nSHARE [...] Recent disclosures from OpenAI and Anthropic underscore the importance of readiness when AI agents go rogue. \n\nOn Oct. 23, OpenAI disclosed that an internal research model exploited a technical misconfiguration to access the internet during training. The company said it paused certain activities and strengthened its security controls. [...] 3. Practice before an incident happens: Use the worksheet’s 15-minute tabletop exercise to walk through a hypothetical incident involving an AI agent that sends confidential information to an unauthorized recipient. Identify gaps in your response process and assign responsibility for fixing them.",
+                "score": 0.6565047
+              }
+            ]
+          }
+        }
+      ],
+      "ended_at": "2026-11-10T19:34:21"
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-11-10T19:34:21",
+      "user": "Please summarize this article for me.",
+      "status": "waiting_for_user",
+      "assistant_text": "Please provide the URL of the article you would like me to summarize.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "Please provide the URL of the article you would like me to summarize.",
+                "response_type": "text"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "clarify",
+              "args": {
+                "question": "Please provide the URL of the article you would like me to summarize.",
+                "response_type": "text"
+              },
+              "result": {
+                "tool": "ask_user",
+                "question": "Please provide the URL of the article you would like me to summarize.",
+                "response_type": "text",
+                "options": [],
+                "awaiting_user": true
+              }
+            }
+          ]
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Please provide the URL of the article you would like me to summarize.",
+            "response_type": "text"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Please provide the URL of the article you would like me to summarize.",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ],
+      "ended_at": "2026-11-10T19:34:22"
+    },
+    {
+      "turn_index": 3,
+      "started_at": "2026-11-10T19:34:22",
+      "user": "https://arxiv.org/abs/2303.11366",
+      "status": "answered",
+      "assistant_text": "Here is a summary of the article titled **\"Reflexion: Language Agents with Verbal Reinforcement Learning\"**:\n\n- **Authors**: Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao\n- **Abstract**: The paper introduces Reflexion, a novel framework designed to enhance the learning capabilities of language agents interacting with external environments (like games and APIs). Unlike traditional reinforcement learning methods that require extensive training and fine-tuning, Reflexion utilizes linguistic feedback for reinforcement. Agents reflect on task feedback and maintain a reflective memory to improve decision-making in future trials. The framework supports various feedback types and sources, leading to significant performance improvements across tasks, including coding and language reasoning. Notably, Reflexion achieved a 91% pass rate on the HumanEval coding benchmark, outperforming the previous state-of-the-art model, GPT-4, which had an 80% pass rate.\n\nFor more details, you can access the full paper [here](https://arxiv.org/abs/2303.11366).",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "fetch",
+              "args": {
+                "url": "https://arxiv.org/abs/2303.11366"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "fetch",
+              "args": {
+                "url": "https://arxiv.org/abs/2303.11366"
+              },
+              "result": {
+                "tool": "read_url",
+                "url": "https://arxiv.org/abs/2303.11366",
+                "items": [
+                  {
+                    "title": "[2303.11366] Reflexion: Language Agents with Verbal Reinforcement Learning",
+                    "url": "https://arxiv.org/abs/2303.11366",
+                    "source": "arxiv.org",
+                    "summary": "[Skip to main content](https://arxiv.org/abs/2303.11366#content)\n\nSearch arXiv\n\nPress Enter to search · [Advanced search](https://arxiv.org/search/advanced)\n\n# Computer Science > Artificial Intelligence\n\n**arXiv:2303.11366** (cs)\n\n\n\\[Submitted on 20 Mar 2023 ( [v1](https://arxiv.org/abs/2303.11366v1)), last revised 10 Oct 2023 (this version, v4)\\]\n\n# Title:Reflexion: Language Agents with Verbal Reinforcement Learning\n\nAuthors: [Noah Shinn](https://arxiv.org/search/cs?searchtype=author&query=Shinn,+N), [Federico Cassano](https://arxiv.org/search/cs?searchtype=author&query=Cassano,+F), [Edward Berman](https://arxiv.org/search/cs?searchtype=author&query=Berman,+E), [Ashwin Gopinath](https://arxiv.org/search/cs?searchtype=author&query=Gopinath,+A), [Karthik Narasimhan](https://arxiv.org/search/cs?searchtype=author&query=Narasimhan,+K), [Shunyu Yao](https://arxiv.org/search/cs?searchtype=author&query=Yao,+S)\n\nView a PDF of the paper titled Reflexion: Language Agents with Verbal Reinforcement Learning, by Noah Shinn and 5 other authors\n\n[View PDF](https://arxiv.org/pdf/2303.11366) [HTML (experimental)](https://arxiv.org/html/2303.11366v4)\n\n> Abstract:Large language models (LLMs) have been increasingly used to interact with external environments (e.g., games, compilers, APIs) as goal-driven agents. However, it remains challenging for these language agents to quickly and efficiently learn from trial-and-error as traditional reinforcement learning methods require extensive training samples and expensive model fine-tuning. We propose Reflexion, a novel framework to reinforce language agents not by updating weights, but instead through linguistic feedback. Concretely, Reflexion agents verbally reflect on task feedback signals, then maintain their own reflective text in an episodic memory buffer to induce better decision-making in subsequent trials. Reflexion is flexible enough to incorporate various types (scalar values or free-form language) and sources (external or internally simulated) of feedback signals, and obtains significant improvements over a baseline agent across diverse tasks (sequential decision-making, coding, language reasoning). For example, Reflexion achieves a 91% pass@1 accuracy on the HumanEval coding benchmark, surpassing the previous state-of-the-art GPT-4 that achieves 80%. We also conduct ablation and analysis studies using different feedback signals, feedback incorporation methods, and agent types, and provide insights into how they affect performance.\n\n|     |     |\n| --- | --- |\n| Comments: | v4 contains a few additional experiments |\n| Subjects: | Artificial Intelligence (cs.AI); Computation and Language (cs.CL); Machine Learning (cs.LG) |\n| Cite as: | [arXiv:2303.11366](https://arxiv.org/abs/2303.11366) \\[cs.AI\\] |\n|  | (or [arXiv:2303.11366v4](https://arxiv.org/abs/2303.11366v4) \\[cs.AI\\] for this version) |\n|  | [https://doi.org/10.48550/arXiv.2303.11366](https://doi.org/10.48550/arXiv.2303.11366)<br>Focus to learn more<br>arXiv-issued DOI via DataCite |\n\n## Submission history\n\nFrom: Noah Shinn \\[ [view email](https://arxiv.org/show-email/04212f49/2303.11366)\\]\n\n**[\\[v1\\]](https://arxiv.org/abs/2303.11366v1)**\nMon, 20 Mar 2023 18:08:50 UTC (506 KB)\n\n**[\\[v2\\]](https://arxiv.org/abs/2303.11366v2)**\nSun, 21 May 2023 06:20:36 UTC (404 KB)\n\n**[\\[v3\\]](https://arxiv.org/abs/2303.11366v3)**\nSat, 10 Jun 2023 04:32:30 UTC (396 KB)\n\n**\\[v4\\]**\nTue, 10 Oct 2023 05:21:45 UTC (386 KB)\n\nFull-text links:\n\n## Access Paper:\n\nView a PDF of the paper titled Reflexion: Language Agents with Verbal Reinforcement Learning, by Noah Shinn and 5 other authors\n\n- [View PDF](https://arxiv.org/pdf/2303.11366)\n- [HTML (experimental)](https://arxiv.org/html/2303.11366v4)\n- [TeX Source](https://arxiv.org/src/2303.11366)\n\n[![license icon](https://arxiv.org/icons/licenses/by-4.0.png)view license](http://creativecommons.org/licenses/by/4.0/ \"Rights to this article\")\n\n### Current browse context:\n\ncs.AI\n\n[< prev](https://arxiv.org/prevnext?id"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Here is a summary of the article titled **\"Reflexion: Language Agents with Verbal Reinforcement Learning\"**:\n\n- **Authors**: Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao\n- **Abstract**: The paper introduces Reflexion, a novel framework designed to enhance the learning capabilities of language agents interacting with external environments (like games and APIs). Unlike traditional reinforcement learning methods that require extensive training and fine-tuning, Reflexion utilizes linguistic feedback for reinforcement. Agents reflect on task feedback and maintain a reflective memory to improve decision-making in future trials. The framework supports various feedback types and sources, leading to significant performance improvements across tasks, including coding and language reasoning. Notably, Reflexion achieved a 91% pass rate on the HumanEval coding benchmark, outperforming the previous state-of-the-art model, GPT-4, which had an 80% pass rate.\n\nFor more details, you can access the full paper [here](https://arxiv.org/abs/2303.11366).",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "https://arxiv.org/abs/2303.11366"
+          },
+          "result": {
+            "tool": "read_url",
+            "url": "https://arxiv.org/abs/2303.11366",
+            "items": [
+              {
+                "title": "[2303.11366] Reflexion: Language Agents with Verbal Reinforcement Learning",
+                "url": "https://arxiv.org/abs/2303.11366",
+                "source": "arxiv.org",
+                "summary": "[Skip to main content](https://arxiv.org/abs/2303.11366#content)\n\nSearch arXiv\n\nPress Enter to search · [Advanced search](https://arxiv.org/search/advanced)\n\n# Computer Science > Artificial Intelligence\n\n**arXiv:2303.11366** (cs)\n\n\n\\[Submitted on 20 Mar 2023 ( [v1](https://arxiv.org/abs/2303.11366v1)), last revised 10 Oct 2023 (this version, v4)\\]\n\n# Title:Reflexion: Language Agents with Verbal Reinforcement Learning\n\nAuthors: [Noah Shinn](https://arxiv.org/search/cs?searchtype=author&query=Shinn,+N), [Federico Cassano](https://arxiv.org/search/cs?searchtype=author&query=Cassano,+F), [Edward Berman](https://arxiv.org/search/cs?searchtype=author&query=Berman,+E), [Ashwin Gopinath](https://arxiv.org/search/cs?searchtype=author&query=Gopinath,+A), [Karthik Narasimhan](https://arxiv.org/search/cs?searchtype=author&query=Narasimhan,+K), [Shunyu Yao](https://arxiv.org/search/cs?searchtype=author&query=Yao,+S)\n\nView a PDF of the paper titled Reflexion: Language Agents with Verbal Reinforcement Learning, by Noah Shinn and 5 other authors\n\n[View PDF](https://arxiv.org/pdf/2303.11366) [HTML (experimental)](https://arxiv.org/html/2303.11366v4)\n\n> Abstract:Large language models (LLMs) have been increasingly used to interact with external environments (e.g., games, compilers, APIs) as goal-driven agents. However, it remains challenging for these language agents to quickly and efficiently learn from trial-and-error as traditional reinforcement learning methods require extensive training samples and expensive model fine-tuning. We propose Reflexion, a novel framework to reinforce language agents not by updating weights, but instead through linguistic feedback. Concretely, Reflexion agents verbally reflect on task feedback signals, then maintain their own reflective text in an episodic memory buffer to induce better decision-making in subsequent trials. Reflexion is flexible enough to incorporate various types (scalar values or free-form language) and sources (external or internally simulated) of feedback signals, and obtains significant improvements over a baseline agent across diverse tasks (sequential decision-making, coding, language reasoning). For example, Reflexion achieves a 91% pass@1 accuracy on the HumanEval coding benchmark, surpassing the previous state-of-the-art GPT-4 that achieves 80%. We also conduct ablation and analysis studies using different feedback signals, feedback incorporation methods, and agent types, and provide insights into how they affect performance.\n\n|     |     |\n| --- | --- |\n| Comments: | v4 contains a few additional experiments |\n| Subjects: | Artificial Intelligence (cs.AI); Computation and Language (cs.CL); Machine Learning (cs.LG) |\n| Cite as: | [arXiv:2303.11366](https://arxiv.org/abs/2303.11366) \\[cs.AI\\] |\n|  | (or [arXiv:2303.11366v4](https://arxiv.org/abs/2303.11366v4) \\[cs.AI\\] for this version) |\n|  | [https://doi.org/10.48550/arXiv.2303.11366](https://doi.org/10.48550/arXiv.2303.11366)<br>Focus to learn more<br>arXiv-issued DOI via DataCite |\n\n## Submission history\n\nFrom: Noah Shinn \\[ [view email](https://arxiv.org/show-email/04212f49/2303.11366)\\]\n\n**[\\[v1\\]](https://arxiv.org/abs/2303.11366v1)**\nMon, 20 Mar 2023 18:08:50 UTC (506 KB)\n\n**[\\[v2\\]](https://arxiv.org/abs/2303.11366v2)**\nSun, 21 May 2023 06:20:36 UTC (404 KB)\n\n**[\\[v3\\]](https://arxiv.org/abs/2303.11366v3)**\nSat, 10 Jun 2023 04:32:30 UTC (396 KB)\n\n**\\[v4\\]**\nTue, 10 Oct 2023 05:21:45 UTC (386 KB)\n\nFull-text links:\n\n## Access Paper:\n\nView a PDF of the paper titled Reflexion: Language Agents with Verbal Reinforcement Learning, by Noah Shinn and 5 other authors\n\n- [View PDF](https://arxiv.org/pdf/2303.11366)\n- [HTML (experimental)](https://arxiv.org/html/2303.11366v4)\n- [TeX Source](https://arxiv.org/src/2303.11366)\n\n[![license icon](https://arxiv.org/icons/licenses/by-4.0.png)view license](http://creativecommons.org/licenses/by/4.0/ \"Rights to this article\")\n\n### Current browse context:\n\ncs.AI\n\n[< prev](https://arxiv.org/prevnext?id"
+              }
+            ]
+          }
+        }
+      ],
+      "ended_at": "2026-11-10T19:34:27"
+    }
+  ]
+}
