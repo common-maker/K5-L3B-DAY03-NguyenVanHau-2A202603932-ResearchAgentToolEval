@@ -11,8 +11,8 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |  Nguyễn Văn Hậu      |   2A202603932   |    nguyenhau230303@gmail.com   |    common-maker    |         |
-|   2 |        |      |       |        |         |
+|   1 | Nguyễn Văn Hậu | 2A202603932 | nguyenhau230303@gmail.com | common-maker | Prompt Engineering, Eval, Report & UI |
+|   2 | Cao Thanh Tùng | 2A202603982 | 26ai.tungct@vinuni.edu.vn | cutcutchch123 | New Tools, Unit Tests, Evaluation |
 
 ## Cá nhân
 
