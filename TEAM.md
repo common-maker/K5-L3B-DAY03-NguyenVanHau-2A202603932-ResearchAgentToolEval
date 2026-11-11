@@ -13,7 +13,7 @@
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Nguyễn Văn Hậu | 2A202603932 | nguyenhau230303@gmail.com | common-maker | Prompt Engineering, Evaluation, Report |
-|   2 | Cao Thanh Tùng | 2A202603982 | 26ai.tungct@vinuni.edu.vn | cutcutchch123 | New Tools, Unit Tests, Evaluation |
+|   2 | Cao Thanh Tùng | 2A202603982 | 26ai.tungct@vinuni.edu.vn | TungCTT | New Tools, Evaluation |
 |   3 | Luong Duc Anh | 2A202603931 |  |  | UI and Demo |
 |   4 | Võ Thị Phương Nhung | 2A202603918 | nhungvo631@gmail.com | nhungvo631-stack | Unit Tests, Evaluation |
 ## Cá nhân
@@ -54,17 +54,27 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 ### Phần việc phụ trách
 
-- Phát triển các tool mới.
-- Phối hợp với evaluation và QA để đánh giá tool.
+- Phát triển 3 công cụ mới (`summarize`, `calculator`, `export_report`) theo chuẩn Tool Folder Contract (CP3).
+- Đặc tả metadata `TOOL.md` và đăng ký công cụ vào registry `tools/__init__.py`.
+- Phối hợp với TV1 và TV4 để hoàn thiện schema cho `tools.yaml`, đồng bộ các ca đánh giá nhóm `eval_group.json` và xử lý guardrail an toàn.
 
 ### Đóng góp cụ thể
 
-- Viết ba tool mới: `summarize`, `calculator` và `export_report`.
+- Xây dựng hoàn chỉnh 3 công cụ mới trong `starter_v0/tools/`:
+  - `summarize`: Trích xuất luận điểm chính từ văn bản dài bằng giải thuật lọc câu theo từ khóa `focus` và giới hạn `max_bullets`.
+  - `calculator`: Đánh giá an toàn biểu thức số học qua phân tích cú pháp AST, hỗ trợ toán tử cơ bản, lũy thừa, xử lý lỗi chia cho 0 và chặn code injection.
+  - `export_report`: Xuất báo cáo nghiên cứu ra tệp Markdown/JSON cục bộ, hỗ trợ guardrail chặn path traversal (`../`) và kiểm tra đuôi tệp an toàn.
+- Đăng ký công cụ vào `TOOL_FUNCTIONS`, giữ vững kiểm thử hợp đồng `test_tool_contract.py` xanh 100%.
+- Phối hợp với QA hoàn thiện 15 unit tests trong `test_tools_todo.py`, đưa toàn bộ test suite đạt `92/92 passed (0 failed, 0 skipped)`.
+- Hỗ trợ đưa ca kiểm thử gọi tool mới vào bộ `data/eval_group.json` (`G03_calculator_expression`, `M08_summarize_focus_carryover`), nghiệm thu đạt `10/10 PASS`.
 
 ### Bằng chứng
 
+- Các công cụ mới: [`starter_v0/tools/summarize/`](starter_v0/tools/summarize/), [`starter_v0/tools/calculator/`](starter_v0/tools/calculator/), [`starter_v0/tools/export_report/`](starter_v0/tools/export_report/)
+- Tệp đăng ký: [`starter_v0/tools/__init__.py`](starter_v0/tools/__init__.py)
 - Commit triển khai: `f9c3ad352ead15390ecadce40c5bda19a44da6a9`
-- Các tool: [starter_v0/tools/](starter_v0/tools/)
+- Báo cáo cá nhân: [`report/team/2A202603982_CaoThanhTung.md`](report/team/2A202603982_CaoThanhTung.md)
+- Báo cáo nhóm: [`report/team/group_report.md`](report/team/group_report.md) (mục A2, mục 3, B3, B5a)
 
 ## Luong Duc Anh — 2A202603931
 
